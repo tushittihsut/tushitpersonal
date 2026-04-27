@@ -220,7 +220,8 @@ export default function ProjectsShowcase() {
           <p style={{ 
             color: '#6b5e50', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', marginTop: '0.8rem', 
             letterSpacing: '0.3em', textTransform: 'uppercase',
-            fontFamily: "'Inter', sans-serif", fontWeight: 300
+            fontFamily: "'Inter', sans-serif", fontWeight: 300,
+            lineHeight: 1.8, paddingBottom: '0.2rem'
           }}>
             A curated collection
           </p>
