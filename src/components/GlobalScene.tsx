@@ -173,7 +173,7 @@ function SceneContent() {
       {/* === THE VORTEX TUNNEL (UNTOUCHED) === */}
       <points ref={tunnelRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={tunnelParticlesCount} array={tunnelPositions} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[tunnelPositions, 3]} />
         </bufferGeometry>
         <pointsMaterial size={0.08} color="#ff007f" transparent opacity={0.6} blending={THREE.AdditiveBlending} />
       </points>
