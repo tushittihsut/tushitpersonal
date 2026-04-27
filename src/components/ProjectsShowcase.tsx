@@ -218,7 +218,7 @@ export default function ProjectsShowcase() {
             Selected Works
           </h2>
           <p style={{ 
-            color: '#a09080', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', marginTop: '0.8rem', 
+            color: '#6b5e50', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', marginTop: '0.8rem', 
             letterSpacing: '0.3em', textTransform: 'uppercase',
             fontFamily: "'Inter', sans-serif", fontWeight: 300
           }}>
