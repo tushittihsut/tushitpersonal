@@ -1,6 +1,6 @@
 'use client';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Float, Sphere, Icosahedron, MeshDistortMaterial, Environment, Sparkles } from '@react-three/drei';
+import { Float, Sphere, Icosahedron, MeshDistortMaterial, Environment, Sparkles, PerspectiveCamera } from '@react-three/drei';
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
 
@@ -168,7 +168,7 @@ function SceneContent() {
       <directionalLight position={[-10, 30, -200]} intensity={2} color="#f5f0eb" />
 
       <group ref={cameraGroupRef}>
-        <perspectiveCamera makeDefault position={[0, 0, 5]} fov={60} near={0.1} far={1000} />
+        <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={60} near={0.1} far={1000} />
       </group>
 
       {/* === THE VORTEX TUNNEL (UNTOUCHED) === */}
