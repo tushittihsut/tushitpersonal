@@ -9,8 +9,6 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      // Calculate if we've passed through the portal
       const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
       const progress = window.scrollY / maxScroll;
       setInLightDimension(progress > 0.3);
@@ -36,7 +34,7 @@ export default function Navbar() {
         position: 'fixed',
         top: 0, left: 0, right: 0,
         zIndex: 100,
-        padding: '1.5rem 2rem',
+        padding: '1rem 1.2rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -48,22 +46,23 @@ export default function Navbar() {
     >
       <div style={{ 
         fontWeight: inLightDimension ? 400 : 800, 
-        fontSize: '1.5rem', 
+        fontSize: 'clamp(1rem, 3vw, 1.5rem)', 
         letterSpacing: inLightDimension ? '0.05em' : '-0.05em', 
         fontFamily: inLightDimension ? "'Playfair Display', serif" : 'Space Grotesk',
         color: textColor,
         fontStyle: inLightDimension ? 'italic' : 'normal',
-        transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+        transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        whiteSpace: 'nowrap'
       }}>
         {inLightDimension ? 'Portfolio.' : 'PORTFOLIO.'}
       </div>
       <div style={{ 
         display: 'flex', 
-        gap: '2rem', 
-        fontSize: '0.85rem', 
+        gap: 'clamp(0.8rem, 3vw, 2rem)', 
+        fontSize: 'clamp(0.6rem, 1.8vw, 0.85rem)', 
         fontWeight: inLightDimension ? 300 : 600, 
         textTransform: 'uppercase', 
-        letterSpacing: inLightDimension ? '0.3em' : '0.1em',
+        letterSpacing: inLightDimension ? '0.15em' : '0.05em',
         fontFamily: inLightDimension ? "'Inter', sans-serif" : "'Outfit', sans-serif",
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
       }}>
@@ -72,7 +71,8 @@ export default function Navbar() {
             color: textColor, 
             textDecoration: 'none', 
             transition: 'opacity 0.3s',
-            cursor: 'none'
+            cursor: 'none',
+            whiteSpace: 'nowrap'
           }}
           onMouseOver={e => e.currentTarget.style.opacity = '0.5'}
           onMouseOut={e => e.currentTarget.style.opacity = '1'}>

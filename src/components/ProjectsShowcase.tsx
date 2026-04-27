@@ -1,6 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ExternalLink, Code } from 'lucide-react';
 
 const projects = [
@@ -47,7 +47,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
     const centerY = rect.height / 2;
     const rotateX = ((y - centerY) / centerY) * -8;
     const rotateY = ((x - centerX) / centerX) * 8;
-    
     cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
   };
 
@@ -61,7 +60,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
     <motion.div 
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: index * 0.8 }}
-      style={{ width: '420px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '0' }}
+      style={{ width: 'min(420px, 80vw)', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '0' }}
     >
       <div 
         ref={cardRef}
@@ -70,7 +69,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={handleMouseLeave}
         style={{
-          height: '520px',
+          height: 'min(520px, 65vw)',
           borderRadius: '24px',
           background: 'rgba(255, 255, 255, 0.55)',
           backdropFilter: 'blur(30px)',
@@ -88,7 +87,6 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
           border: '1px solid rgba(255,255,255,0.7)'
         }}
       >
-        {/* Soft accent line at top */}
         <div style={{ 
           position: 'absolute', top: 0, left: '10%', right: '10%', height: '2px', 
           background: `linear-gradient(90deg, transparent, ${project.accent}, transparent)`,
@@ -100,7 +98,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
             animate={{ opacity: hovered ? 1 : 0.4 }}
             transition={{ duration: 0.5 }}
             style={{
-              fontSize: '7rem',
+              fontSize: 'clamp(4rem, 12vw, 7rem)',
               fontWeight: 400,
               color: '#3d3528',
               fontFamily: "'Playfair Display', serif",
@@ -124,13 +122,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
         </div>
       </div>
       
-      {/* Card info below */}
-      <div style={{ 
-        padding: '2rem 0.5rem', 
-      }}>
+      <div style={{ padding: '1.5rem 0.5rem' }}>
         <h3 style={{ 
-          fontSize: '1.8rem', 
-          marginBottom: '0.8rem', 
+          fontSize: 'clamp(1.3rem, 4vw, 1.8rem)', 
+          marginBottom: '0.6rem', 
           fontFamily: "'Playfair Display', serif",
           fontWeight: 600,
           color: '#3d3528'
@@ -139,22 +134,22 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
         </h3>
         <p style={{ 
           color: '#8a7b6b', 
-          fontSize: '1rem', 
-          lineHeight: 1.7, 
-          marginBottom: '1.5rem',
+          fontSize: 'clamp(0.85rem, 2.5vw, 1rem)', 
+          lineHeight: 1.6, 
+          marginBottom: '1rem',
           fontFamily: "'Inter', sans-serif",
           fontWeight: 300
         }}>
           {project.description}
         </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '1.8rem' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.2rem' }}>
           {project.tech.map((t: string) => (
             <span key={t} style={{ 
-              padding: '0.35rem 1rem', 
+              padding: '0.3rem 0.8rem', 
               background: 'rgba(61, 53, 40, 0.06)', 
               border: '1px solid rgba(61, 53, 40, 0.12)',
               borderRadius: '20px',
-              fontSize: '0.8rem',
+              fontSize: '0.7rem',
               color: '#8a7b6b',
               fontWeight: 400,
               fontFamily: "'Inter', sans-serif"
@@ -163,43 +158,32 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
             </span>
           ))}
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
           <a href="#" className="interactive" style={{ 
-            display: 'flex', alignItems: 'center', gap: '0.5rem', 
-            padding: '0.7rem 1.4rem', 
-            background: '#3d3528', 
-            color: '#f5f0eb', 
-            borderRadius: '30px', 
-            textDecoration: 'none', 
-            fontWeight: 500, 
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', 
-            cursor: 'none',
-            fontSize: '0.9rem',
-            fontFamily: "'Inter', sans-serif"
+            display: 'flex', alignItems: 'center', gap: '0.4rem', 
+            padding: '0.6rem 1.2rem', 
+            background: '#3d3528', color: '#f5f0eb', 
+            borderRadius: '30px', textDecoration: 'none', fontWeight: 500, 
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', cursor: 'none',
+            fontSize: '0.8rem', fontFamily: "'Inter', sans-serif"
           }}
              onMouseOver={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 53, 40, 0.2)'; }}
              onMouseOut={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
             <span>Case Study</span>
-            <ExternalLink size={14} />
+            <ExternalLink size={12} />
           </a>
           <a href="#" className="interactive" style={{ 
-            display: 'flex', alignItems: 'center', gap: '0.5rem', 
-            padding: '0.7rem 1.4rem', 
-            background: 'transparent', 
-            border: '1px solid rgba(61, 53, 40, 0.2)', 
-            color: '#3d3528', 
-            borderRadius: '30px', 
-            textDecoration: 'none', 
-            fontWeight: 400, 
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', 
-            cursor: 'none',
-            fontSize: '0.9rem',
-            fontFamily: "'Inter', sans-serif"
+            display: 'flex', alignItems: 'center', gap: '0.4rem', 
+            padding: '0.6rem 1.2rem', background: 'transparent', 
+            border: '1px solid rgba(61, 53, 40, 0.2)', color: '#3d3528', 
+            borderRadius: '30px', textDecoration: 'none', fontWeight: 400, 
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)', cursor: 'none',
+            fontSize: '0.8rem', fontFamily: "'Inter', sans-serif"
           }}
              onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(61, 53, 40, 0.06)'; }}
              onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; }}>
             <span>Source</span>
-            <Code size={14} />
+            <Code size={12} />
           </a>
         </div>
       </div>
@@ -209,54 +193,48 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
 
 export default function ProjectsShowcase() {
   const targetRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+  const [isMobile, setIsMobile] = useState(false);
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const { scrollYProgress } = useScroll({ target: targetRef });
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "-300%" : "-75%"]);
 
   return (
-    <section id="work" ref={targetRef} style={{ height: '400vh', position: 'relative', background: 'transparent' }}>
+    <section id="work" ref={targetRef} style={{ height: isMobile ? '600vh' : '400vh', position: 'relative', background: 'transparent' }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
         
-        <div style={{ paddingLeft: '10vw', marginBottom: '4rem' }}>
+        <div style={{ paddingLeft: 'clamp(1.5rem, 5vw, 10vw)', marginBottom: 'clamp(1.5rem, 4vw, 4rem)' }}>
           <h2 style={{ 
-            fontSize: '4.5rem', 
-            fontFamily: "'Playfair Display', serif", 
-            fontWeight: 400, 
-            margin: 0,
-            color: '#3d3528',
-            fontStyle: 'italic'
+            fontSize: 'clamp(2.5rem, 8vw, 4.5rem)', 
+            fontFamily: "'Playfair Display', serif", fontWeight: 400, margin: 0,
+            color: '#3d3528', fontStyle: 'italic'
           }}>
             Selected Works
           </h2>
           <p style={{ 
-            color: '#a09080', 
-            fontSize: '0.9rem', 
-            marginTop: '1rem', 
-            letterSpacing: '0.3em', 
-            textTransform: 'uppercase',
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 300
+            color: '#a09080', fontSize: 'clamp(0.7rem, 2vw, 0.9rem)', marginTop: '0.8rem', 
+            letterSpacing: '0.3em', textTransform: 'uppercase',
+            fontFamily: "'Inter', sans-serif", fontWeight: 300
           }}>
             A curated collection
           </p>
         </div>
 
-        <motion.div style={{ x, display: 'flex', gap: '5rem', paddingLeft: '10vw', paddingRight: '10vw' }}>
+        <motion.div style={{ x, display: 'flex', gap: 'clamp(2rem, 5vw, 5rem)', paddingLeft: 'clamp(1.5rem, 5vw, 10vw)', paddingRight: '10vw' }}>
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </motion.div>
 
-        {/* Elegant thin progress line */}
-        <div style={{ position: 'absolute', bottom: '4rem', left: '10vw', right: '10vw', height: '1px', background: 'rgba(61, 53, 40, 0.1)' }}>
+        <div style={{ position: 'absolute', bottom: '3rem', left: 'clamp(1.5rem, 5vw, 10vw)', right: 'clamp(1.5rem, 5vw, 10vw)', height: '1px', background: 'rgba(61, 53, 40, 0.1)' }}>
           <motion.div 
-            style={{ 
-              height: '1px', 
-              background: '#c9a87c',
-              width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
-            }} 
+            style={{ height: '1px', background: '#c9a87c', width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]) }} 
           />
         </div>
       </div>
