@@ -207,7 +207,7 @@ export default function ProjectsShowcase() {
 
   return (
     <section id="work" ref={targetRef} style={{ height: isMobile ? '600vh' : '400vh', position: 'relative', background: 'transparent' }}>
-      <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflow: 'hidden' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', overflowX: 'hidden', overflowY: 'visible' }}>
         
         <div style={{ paddingLeft: 'clamp(1.5rem, 5vw, 10vw)', marginBottom: 'clamp(1.5rem, 4vw, 4rem)' }}>
           <h2 style={{ 
