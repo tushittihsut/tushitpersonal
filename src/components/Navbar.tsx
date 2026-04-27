@@ -54,7 +54,7 @@ export default function Navbar() {
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         whiteSpace: 'nowrap'
       }}>
-        {inLightDimension ? 'Beyond Interface by Tushit' : 'BEYOND INTERFACE'}
+        {inLightDimension ? 'Beyond Interface by Tushit' : 'BEYOND INTERFACE BY TUSHIT'}
       </div>
       <div style={{ 
         display: 'flex', 

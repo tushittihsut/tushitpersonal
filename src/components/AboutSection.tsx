@@ -61,7 +61,7 @@ export default function AboutSection() {
               border: '1px solid rgba(255,255,255,0.6)', boxShadow: '0 8px 32px rgba(0,0,0,0.06)'
             }}>
               <Image 
-                src="/about-portrait.png" 
+                src="/about-portrait.jpg" 
                 alt="Tushit — Developer" 
                 fill 
                 style={{ objectFit: 'cover', objectPosition: 'center top' }}
