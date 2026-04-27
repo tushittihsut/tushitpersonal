@@ -7,6 +7,7 @@ import ContactSection from '@/components/ContactSection';
 import CustomCursor from '@/components/CustomCursor';
 import GlobalScene from '@/components/GlobalScene';
 import DimensionLanding from '@/components/DimensionLanding';
+import ReviewsSection from '@/components/ReviewsSection';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <DimensionLanding />
       <ProjectsShowcase />
       <AboutSection />
+      <ReviewsSection />
       <ContactSection />
     </main>
   );

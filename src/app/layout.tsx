@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Premium Portfolio | Immersive Experience',
-  description: 'A cutting-edge digital experience showcasing premium web development and interactive 3D design.',
+  title: 'Beyond Interface by Tushit | Immersive Web Experiences',
+  description: 'High-performance, immersive web experiences by Tushit. Design, motion, and code — beyond standard interfaces.',
 };
 
 export default function RootLayout({

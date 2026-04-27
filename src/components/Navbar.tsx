@@ -45,16 +45,16 @@ export default function Navbar() {
       }}
     >
       <div style={{ 
-        fontWeight: inLightDimension ? 400 : 800, 
-        fontSize: 'clamp(1rem, 3vw, 1.5rem)', 
-        letterSpacing: inLightDimension ? '0.05em' : '-0.05em', 
+        fontWeight: inLightDimension ? 400 : 700, 
+        fontSize: 'clamp(0.75rem, 2.5vw, 1.2rem)', 
+        letterSpacing: inLightDimension ? '0.03em' : '-0.02em', 
         fontFamily: inLightDimension ? "'Playfair Display', serif" : 'Space Grotesk',
         color: textColor,
         fontStyle: inLightDimension ? 'italic' : 'normal',
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         whiteSpace: 'nowrap'
       }}>
-        {inLightDimension ? 'Portfolio.' : 'PORTFOLIO.'}
+        {inLightDimension ? 'Beyond Interface by Tushit' : 'BEYOND INTERFACE'}
       </div>
       <div style={{ 
         display: 'flex', 
@@ -66,7 +66,7 @@ export default function Navbar() {
         fontFamily: inLightDimension ? "'Inter', sans-serif" : "'Outfit', sans-serif",
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
       }}>
-        {['Work', 'About', 'Contact'].map(link => (
+        {['Work', 'About', 'Reviews', 'Contact'].map(link => (
           <a key={link} href={`#${link.toLowerCase()}`} className="interactive" style={{ 
             color: textColor, 
             textDecoration: 'none', 

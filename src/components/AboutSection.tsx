@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function AboutSection() {
   return (
@@ -22,11 +23,15 @@ export default function AboutSection() {
               fontFamily: "'Playfair Display', serif", fontWeight: 400, marginBottom: '2rem',
               color: '#3d3528', lineHeight: 1.2, fontStyle: 'italic'
             }}>Beyond the <br/>Code.</h2>
+
             <p style={{ color: '#8a7b6b', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', lineHeight: 1.8, marginBottom: '1.5rem', fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
-              I am a creative developer who bridges the gap between design and engineering. My focus is on building immersive, highly interactive web experiences that don't just look good, but feel incredible to use.
+              {"I'm Tushit — a developer focused on building high-performance, immersive web experiences."}
+            </p>
+            <p style={{ color: '#8a7b6b', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', lineHeight: 1.8, marginBottom: '1.5rem', fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
+              {"I don't just create websites. I engineer interactions that feel smooth, intentional, and alive. My work blends design, motion, and code to turn simple ideas into experiences people actually remember."}
             </p>
             <p style={{ color: '#8a7b6b', fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)', lineHeight: 1.8, marginBottom: '2.5rem', fontFamily: "'Inter', sans-serif", fontWeight: 300 }}>
-              By leveraging modern web technologies like React, Next.js, and WebGL, I create digital products that push the boundaries of what's possible in the browser.
+              {"I'm constantly pushing beyond standard interfaces — exploring animation, 3D, and scroll-driven storytelling to build websites that feel less like pages and more like journeys."}
             </p>
             
             <div style={{ borderTop: '1px solid rgba(61, 53, 40, 0.1)', paddingTop: '1.5rem' }}>
@@ -43,23 +48,31 @@ export default function AboutSection() {
             </div>
           </div>
           
+          {/* Portrait Image */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ position: 'relative', height: 'clamp(300px, 50vw, 500px)' }}
+            style={{ position: 'relative', height: 'clamp(350px, 55vw, 550px)' }}
           >
             <div style={{ 
-              position: 'absolute', inset: 0, background: 'rgba(255, 255, 255, 0.4)', borderRadius: '24px', 
-              border: '1px solid rgba(255,255,255,0.6)', overflow: 'hidden',
-              backdropFilter: 'blur(30px)', boxShadow: '0 8px 32px rgba(0,0,0,0.06)'
+              position: 'absolute', inset: 0, borderRadius: '24px', overflow: 'hidden',
+              border: '1px solid rgba(255,255,255,0.6)', boxShadow: '0 8px 32px rgba(0,0,0,0.06)'
             }}>
-              <div style={{ width: '150%', height: '150%', background: 'radial-gradient(circle at center, rgba(201, 168, 124, 0.15) 0%, transparent 60%)', position: 'absolute', top: '-25%', left: '-25%' }} />
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', position: 'relative', zIndex: 10 }}>
-                <div style={{ width: '200px', height: '200px', borderRadius: '50%', background: 'linear-gradient(135deg, #e8ddd3 0%, #c9a87c 100%)', filter: 'blur(50px)', opacity: 0.5 }} />
-                <div style={{ position: 'absolute', fontFamily: "'Playfair Display', serif", fontSize: 'clamp(5rem, 15vw, 8rem)', fontStyle: 'italic', color: 'rgba(61, 53, 40, 0.06)', fontWeight: 400 }}>A</div>
-              </div>
+              <Image 
+                src="/about-portrait.png" 
+                alt="Tushit — Developer" 
+                fill 
+                style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                priority
+              />
+              {/* Soft gradient overlay at bottom */}
+              <div style={{ 
+                position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+                background: 'linear-gradient(to top, rgba(245, 240, 235, 0.6), transparent)',
+                pointerEvents: 'none'
+              }} />
             </div>
           </motion.div>
         </motion.div>
