@@ -31,7 +31,7 @@ export default function ContactSection() {
             <p style={{ color: '#8a7b6b', fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', maxWidth: '550px', margin: '0 auto 2.5rem auto', fontFamily: "'Inter', sans-serif", fontWeight: 300, lineHeight: 1.7 }}>
               Open for freelance opportunities and collaborations. If you have a project in mind, let's talk.
             </p>
-            <a href="mailto:tushitsachdeva7@gmail.com" className="interactive" style={{ 
+            <a href="/contact-details" className="interactive" style={{ 
               display: 'inline-block', padding: 'clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem)', 
               background: '#3d3528', color: '#f5f0eb', borderRadius: '40px', fontWeight: 500,
               textDecoration: 'none', fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
